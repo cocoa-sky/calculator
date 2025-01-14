@@ -122,7 +122,7 @@
             } else {
                 numAll.push(resultNum);
                 signAll.push(i);
-                resultNum = 0;
+                resultNum = undefined;
                 drawResult(resultNum);
             }
             sign = 1 // 連続で符号（+-*/）ボタンを押すのを防止して、最後に押した符号を変更するための変数
@@ -152,8 +152,8 @@
                 temp *= numAll[i1];
             } else if (signAll[i] === 4) {
                 temp /= numAll[i1];
-                temp = parseFloat(temp.toFixed(2)); // 小数点以下2桁まで表示
             }
+            temp = parseFloat(temp.toFixed(2)); // 小数点以下2桁まで表示
         }
 
         resultNum = temp;
@@ -174,8 +174,18 @@
         decimal = 1; // 次に押す数字ボタンは小数点以下
     });
 
-    // Cボタンを押した時
+    // cボタンを押した時
     document.querySelector('#c').addEventListener('click', () => {
+        resultNum = undefined;
+        previousEqual = 0; // ひとつ前が「=」でも計算を続けるので0に戻す
+        sign = 0; // 符号を連続で押してないので0に戻す
+        decimal = 0; // 小数点以下の数字入力終了
+        decimalPoint0 = 0; // 「.0」の入力無効
+        drawResult(resultNum);
+    });
+
+    // →ボタンを押した時
+    document.querySelector('#arrow').addEventListener('click', () => {
         // エラー表示か、「.0」か、数字未入力状態なら
         if (err === 1 || resultNum === undefined) {
             reset();
