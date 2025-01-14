@@ -166,8 +166,8 @@
 
     // 「.」小数点ボタンを押した時
     document.querySelector('#point').addEventListener('click', () => {
-        // 上の数字が10桁以上か、整数でないなら
-        if (resultNum.toString().length >= 10 || resultNum - Math.trunc(resultNum) !== 0) {
+        // 数字未入力状態か、上の数字が10桁以上か、整数でないなら
+        if (resultNum === undefined || resultNum.toString().length >= 10 || resultNum - Math.trunc(resultNum) !== 0) {
             return; // 何もしない
         }
         sign = 0; // 符号を連続で押してないので0に戻す
@@ -208,5 +208,4 @@
     document.querySelector('#ac').addEventListener('click', () => {
         reset();
     });
-
 }
