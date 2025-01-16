@@ -100,11 +100,3 @@ body {
     width: calc((100% - 4 * 8px) / 5);
     height: 40px;
 }
-
-p {
-    border-radius: 8px;
-    color: #fff;
-    margin: 16px auto;
-    width: 300px;
-    font-size: 12px;
-}
